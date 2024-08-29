@@ -1,0 +1,102 @@
+/* top */
+
+header,
+.container {
+  margin: 0 20%;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 90%;
+}
+
+.table-hover tr {
+  border-bottom: 1px solid #333;
+}
+
+.table th,
+
+.table td {
+  padding: 15px;
+  text-align: left;
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* btn */
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #008000;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #3300cc;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #db1529;
+}
+
+/* form */
+
+.form-control {
+  width: 100%;
+  padding: 5px;
+}
+
+button {
+  border: none;
+  margin-top: 20px;
+  font-size: 1rem;
+  padding: 5px;
+}
+
+/* auth */
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-toggler {
+  display: none;
+}
+
+.nav-item {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-brand,
+
+.nav-link,
+
+.dropdown-item {
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 3px;
+  text-decoration: none;
+  display: block;
+}
