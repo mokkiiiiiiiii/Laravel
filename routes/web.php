@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\PostsController;
-
 use Illuminate\Http\Request;
 
 /*
@@ -17,8 +15,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('', function () {
+    return redirect()->route('login');
 });
 
 Route::get('index', [PostsController::class, 'index'])->name('posts.index');

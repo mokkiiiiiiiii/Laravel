@@ -19,6 +19,10 @@
 
 <div class="form-group">
 {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容']) !!}
+
+    @error('newPost')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </div>
 
 <button type="submit" class="btn btn-success pull-right">追加</button>

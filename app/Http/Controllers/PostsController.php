@@ -33,12 +33,18 @@ class PostsController extends Controller
             'required',
             'string',
             'max:100',
-            'regex:/\S+/',  // スペースのみの入力を無効にする
+            function ($attribute, $value, $fail) {
+                if (preg_match('/^\s*$/u', $value)) {
+                    $fail('投稿内容には空白以外の文字を含めてください。');
+                }
+                if (!preg_match('/[^\x20-\x7e]/u', $value)) {
+                    $fail('投稿内容には半角文字のみを使用することはできません。');
+                }
+            },
         ],
       ], [
-        'contents.required' => '投稿内容は必須項目です。',
-        'contents.max' => '投稿内容は100文字以内で入力してください。',
-        'upPost.regex' => '投稿内容には空白以外の文字を含めてください。',
+        'newPost.required' => '投稿内容は必須項目です。',
+        'newPost.max' => '投稿内容は100文字以内で入力してください。',
     ]);
 
     $post = $request->input('newPost');
@@ -71,7 +77,12 @@ class PostsController extends Controller
             'required',
             'string',
             'max:100',
-            'regex:/\S+/',  // スペースのみの入力を無効にする
+            function ($attribute, $value, $fail) {
+                // 空白文字のみの入力を無効にする
+                if (preg_match('/^\p{Zs}+$/u', $value) || preg_match('/^\s*$/u', $value)) {
+                    $fail('投稿内容には空白以外の文字を含めてください。');
+                }
+            },
         ],
     ], [
         'upPost.required' => '投稿内容は必須項目です。',
@@ -83,7 +94,7 @@ class PostsController extends Controller
 
   $post = DB::table('posts')->where('id', $id)->first();
   // ログインユーザーが投稿の作成者であるか確認
-    if ($post->id !== Auth::id()) {
+    if ($post->user_id !== Auth::id()) {
         abort(403, 'Unauthorized action.');  // 権限がない場合は403エラー
     }
 
@@ -99,7 +110,7 @@ class PostsController extends Controller
   {
   $post = DB::table('posts')->where('id', $id)->first();
   // ログインユーザーが投稿の作成者であるか確認
-    if ($post->id !== Auth::id()) {
+    if ($post->user_id !== Auth::id()) {
         abort(403, 'Unauthorized action.');  // 権限がない場合は403エラー
     }
 

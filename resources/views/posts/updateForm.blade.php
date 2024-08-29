@@ -17,6 +17,10 @@
       <div class="form-group">
         {!! Form::hidden('id', $post->id) !!}
         {!! Form::input('text', 'upPost', $post->contents, ['required', 'class' => 'form-control']) !!}
+
+        @error('upPost')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
       </div>
 
       <button type="submit" class="btn btn-primary pull-right">更新</button>

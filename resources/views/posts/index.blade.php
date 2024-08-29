@@ -30,11 +30,14 @@
           <td>{{ $list->created_at }}</td>
 
           <!-- ログインユーザーが投稿の所有者の場合のみ、更新・削除ボタンを表示 -->
-          @if ($list->id === Auth::id())
-          <td><a class="btn btn-primary" href="/post/{{ $list->id }}/update-form">更新</a></td>
 
-          <td><a class="btn btn-danger" href="/post/{{ $list->id }}/delete"
-          onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a></td>
+          @if ($list->user_id === Auth::id())
+          <td><a class="btn btn-primary" href="/post/{{ $list->id }}/update-form">更新</a></td>
+          <td>
+            <a class="btn btn-danger" href="/post/{{ $list->id }}/delete"
+            onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a>
+          </td>
+
           @endif
         </tr>
           @endforeach
